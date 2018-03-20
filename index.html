@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Google Maps API Template</title>
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div id="floating-panel">
+        <b>Mode of Travel: </b>
+        <select id="mode">
+            <option value="BICYCLING">Bicycling</option>
+            <option value="WALKING">Walking</option>
+        </select>
+    </div>
+    <div id="map"></div>
+    <div id='right-panel'>
+        <p>Total Distance: <span id='total'></span></p>
+    </div>
+    <script src="app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH_vcCJbKYJtfXijkSaOqvLG-YwA0ELMM&callback=initMap">
+    </script>
+</body>
+
+</html>
