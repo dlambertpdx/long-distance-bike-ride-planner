@@ -1,7 +1,10 @@
       #right-panel {
         font-family: 'Roboto','sans-serif';
         line-height: 30px;
-        padding-left: 10px;
+        float: right;
+        width: 30%;
+        height: 100%;
+        margin: 0 15px 0 0;
       }
 
       #right-panel select, #right-panel input {
@@ -18,7 +21,6 @@
       html, body {
         height: 100%;
         margin: 0;
-        padding: 0;
       }
       #map {
         height: 100%;
@@ -26,11 +28,7 @@
         width: 67%;
         height: 100%;
       }
-      #right-panel {
-        float: right;
-        width: 30%;
-        height: 100%;
-      }
+      
       .panel {
         height: 100%;
         overflow: auto;
