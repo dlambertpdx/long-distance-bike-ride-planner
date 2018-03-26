@@ -31,7 +31,7 @@ body {
   #right-panel {
     order: -2;
     position: absolute;
-    height: 50%;
+/*     height: 50%; */
     top: 50%;
   }
   #map {
