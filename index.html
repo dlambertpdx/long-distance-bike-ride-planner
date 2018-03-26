@@ -11,17 +11,32 @@
 </head>
 
 <body>
-    <div id="floating-panel">
+  <div id="main">
+    <!-- MAP -->
+    <div id="map"></div>
+
+    <!-- NAV PANEL -->
+    <div id='right-panel'>
+
+      <!-- MODE OF TRANSPORTATION -->
+      <div id="floating-panel">
         <b>Mode of Travel: </b>
         <select id="mode">
-            <option value="BICYCLING">Bicycling</option>
-            <option value="WALKING">Walking</option>
+          <option value="BICYCLING">Bicycling</option>
+          <option value="WALKING">Walking</option>
         </select>
+      </div>
+
+      <!-- TOTAL DISTANCE OF ROUTE -->
+      <div class="totalDistance">
+        <p>Total Distance:
+          <span id='total'></span>
+        </p>
+      </div>
+
     </div>
-    <div id="map"></div>
-    <div id='right-panel'>
-        <p>Total Distance: <span id='total'></span></p>
-    </div>
+
+  </div>
     <script src="app.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH_vcCJbKYJtfXijkSaOqvLG-YwA0ELMM&callback=initMap">
     </script>

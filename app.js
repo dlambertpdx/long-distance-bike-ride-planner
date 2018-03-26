@@ -1,13 +1,13 @@
 function initMap() {
   var directionsService = new google.maps.DirectionsService;
-   var directionsDisplay = new google.maps.DirectionsRenderer({
+  var directionsDisplay = new google.maps.DirectionsRenderer({
     draggable: true,
-    map:map,
+    map: map,
     panel: document.getElementById('right-panel')
   });
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
-    center: {lat: 45.5231, lng: -122.6765} //Portland, OR
+    center: { lat: 45.5231, lng: -122.6765 } //Portland, OR
   });
 
   directionsDisplay.setMap(map);
@@ -25,18 +25,18 @@ function initMap() {
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   var selectedMode = document.getElementById('mode').value;
   directionsService.route({
-    origin: {lat: 45.5162, lng: -122.6834}, //Portland Art Museum
-    destination: {lat: 45.5180, lng: -122.5948}, //Mount Tabor, Portland 
-    waypoints: [{ location:'Tryon Creek, Portland, OR'}, { location: 'Woodstock, Portland, OR'}],
-    travelMode: google.maps.TravelMode[selectedMode] 
-  }, function(response, status) { 
-      if (status == 'OK') { 
-        directionsDisplay.setDirections(response); 
-      } else { 
-        window.alert('Directions request failed due to ' + status); 
-      } 
-    }); 
-  }
+    origin: { lat: 45.5162, lng: -122.6834 }, //Portland Art Museum
+    destination: { lat: 45.5180, lng: -122.5948 }, //Mount Tabor, Portland 
+    waypoints: [{ location: 'Tryon Creek, Portland, OR' }, { location: 'Woodstock, Portland, OR' }],
+    travelMode: google.maps.TravelMode[selectedMode]
+  }, function (response, status) {
+    if (status == 'OK') {
+      directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+}
 
 function computeTotalDistance(result) {
   var total = 0;
