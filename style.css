@@ -1,9 +1,6 @@
-body {
- font-family: sans-serif;
- position: relative;
-}
 
 #main {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   height: 100vh;
   display: flex;
 }
@@ -11,15 +8,15 @@ body {
 #map {
  order: 1;
  flex: 3;
- /* height: 100%; */
- /* width: 100%; */
+ height: 100vh;
+ width: 100vw;
  background-color: green;
 }
 #right-panel {
   order: 2;
   flex: 1;
   flex-wrap: wrap;
-  /* height: 100%; */
+  height: 100vh;
   padding: 10px;
 }
 
@@ -29,20 +26,17 @@ body {
   }
 
   #right-panel {
-    order: -2;
     position: absolute;
-/*     height: 50%; */
     top: 50%;
   }
   #map {
     /* On small screens, we are no longer using row direction but column */
     order: -1;
-    flex: 1;
     position: absolute;
-    height: 50%;
     right: 0;
     left: 0;
     top: 0;
-    bottom: 50%
+    bottom: 0;
+    height: 50%;
   }
 }
