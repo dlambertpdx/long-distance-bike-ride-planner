@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Google Maps API Template</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Maps API</title>
 
-    <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -17,29 +17,36 @@
 
     <!-- NAV PANEL -->
     <div id='right-panel'>
+      <!-- location search form -->
+      <div id="search">
 
-      <!-- MODE OF TRANSPORTATION -->
-      <div id="floating-panel">
-        <b>Mode of Travel: </b>
-        <select id="mode">
-          <option value="BICYCLING">Bicycling</option>
-          <option value="WALKING">Walking</option>
-        </select>
+        <form id="location-form">
+          <div>
+            <label for="start" id="start-label">Start: </label>
+            <input type="text" id="start-input">
+          </div>
+          <div>
+            <label for="destination" id="destination-label">Destination: </label>
+            <input type="text" id="destination-input">
+          </div>
+          <button type='submit'>Submit</button>
+        </form>
+        <button id="add-waypoint">Add Waypoint</button>
       </div>
 
       <!-- TOTAL DISTANCE OF ROUTE -->
       <div class="totalDistance">
         <p>Total Distance:
-          <span id='total'></span>
-        </p>
+          <span id='total'></span> x miles </p>
       </div>
 
     </div>
 
   </div>
-    <script src="app.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH_vcCJbKYJtfXijkSaOqvLG-YwA0ELMM&callback=initMap">
-    </script>
+
+  <script src="app.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH_vcCJbKYJtfXijkSaOqvLG-YwA0ELMM&callback=initMap">
+  </script>
 </body>
 
 </html>

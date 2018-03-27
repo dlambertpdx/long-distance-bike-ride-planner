@@ -1,3 +1,7 @@
+
+//This is not working for some reason
+const setTotal = total => document.getElementById('total').innerHTML = total + ' miles';
+
 function initMap() {
   var directionsService = new google.maps.DirectionsService;
   var directionsDisplay = new google.maps.DirectionsRenderer({
@@ -12,23 +16,23 @@ function initMap() {
 
   directionsDisplay.setMap(map);
   calculateAndDisplayRoute(directionsService, directionsDisplay);
-  document.getElementById('mode').addEventListener('change', function () {
-    calculateAndDisplayRoute(directionsService, directionsDisplay);
-  });
+//   document.getElementById('mode').addEventListener('change', function () {
+//     calculateAndDisplayRoute(directionsService, directionsDisplay);
+//   });
 
-  directionsDisplay.addListener('directions_changed', function () {
-    computeTotalDistance(directionsDisplay.getDirections());
-  });
+  // directionsDisplay.addListener('directions_changed', function () {
+  //   computeTotalDistance(directionsDisplay.getDirections());
+  // });
 
 }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-  var selectedMode = document.getElementById('mode').value;
+  // var selectedMode = document.getElementById('mode').value;
   directionsService.route({
     origin: { lat: 45.5162, lng: -122.6834 }, //Portland Art Museum
     destination: { lat: 45.5180, lng: -122.5948 }, //Mount Tabor, Portland 
     waypoints: [{ location: 'Tryon Creek, Portland, OR' }, { location: 'Woodstock, Portland, OR' }],
-    travelMode: google.maps.TravelMode[selectedMode]
+    travelMode: 'BICYCLING'
   }, function (response, status) {
     if (status == 'OK') {
       directionsDisplay.setDirections(response);
@@ -45,5 +49,5 @@ function computeTotalDistance(result) {
     total += myroute.legs[i].distance.value;
   }
   total = parseFloat(total / 1609).toFixed(1);
-  document.getElementById('total').innerHTML = total + ' miles';
+  return total;
 }
