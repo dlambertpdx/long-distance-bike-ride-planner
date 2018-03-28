@@ -2,9 +2,12 @@
 //This is not working for some reason
 const setTotal = total => document.getElementById('total').innerHTML = total + ' miles';
 
+let directionsService;
+let directionDisplay;
+
 function initMap() {
-  const directionsService = new google.maps.DirectionsService;
-  const directionsDisplay = new google.maps.DirectionsRenderer({
+  directionsService = new google.maps.DirectionsService;
+  directionsDisplay = new google.maps.DirectionsRenderer({
     draggable: true,
     map: map,
     panel: document.getElementById('right-panel')
@@ -21,18 +24,29 @@ function initMap() {
 //     calculateAndDisplayRoute(directionsService, directionsDisplay);
 //   });
 
-  // directionsDisplay.addListener('directions_changed', function () {
-  //   computeTotalDistance(directionsDisplay.getDirections());
-  // });
+  directionsDisplay.addListener('directions_changed', function () {
+    
+    setTotal(computeTotalDistance(directionsDisplay.getDirections()));
+  });
 
 }
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+function formSubmit() {
+  $('#location-form').submit((e) => {
+    e.preventDefault();
+    const startInput = $(e.currentTarget).find('#start-input').val();
+    const endInput = $(e.currentTarget).find('#end-input').val();
+    calculateAndDisplayRoute(directionsService, directionsDisplay, startInput, endInput);
+  });
+}
+
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay, origin, destination) {
   // var selectedMode = document.getElementById('mode').value;
   directionsService.route({
-    origin: { lat: 45.5162, lng: -122.6834 }, //Portland Art Museum
-    destination: { lat: 45.5180, lng: -122.5948 }, //Mount Tabor, Portland 
-    waypoints: [{ location: 'Tryon Creek, Portland, OR' }, { location: 'Woodstock, Portland, OR' }],
+    origin: origin,
+    destination: destination,
+    // waypoints: [{ location: 'Tryon Creek, Portland, OR' }, { location: 'Woodstock, Portland, OR' }],
     travelMode: 'BICYCLING'
   }, function (response, status) {
     if (status == 'OK') {
@@ -52,3 +66,5 @@ function computeTotalDistance(result) {
   total = parseFloat(total / 1609).toFixed(1);
   return total;
 }
+
+$(formSubmit);
