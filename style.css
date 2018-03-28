@@ -26,17 +26,17 @@
   }
 
   #right-panel {
-    position: absolute;
-    top: 50%;
+    /* position: absolute; */
+    height: 50%;
   }
   #map {
     /* On small screens, we are no longer using row direction but column */
     order: -1;
-    position: absolute;
+    /* position: absolute;
     right: 0;
     left: 0;
     top: 0;
-    bottom: 0;
+    bottom: 0; */
     height: 50%;
   }
 }

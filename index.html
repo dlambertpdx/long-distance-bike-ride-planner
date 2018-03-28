@@ -26,8 +26,8 @@
             <input type="text" id="start-input">
           </div>
           <div>
-            <label for="destination" id="destination-label">Destination: </label>
-            <input type="text" id="destination-input">
+            <label for="end" id="end-label">End: </label>
+            <input type="text" id="end-input">
           </div>
           <button type='submit'>Submit</button>
         </form>
@@ -45,7 +45,8 @@
   </div>
 
   <script src="app.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH_vcCJbKYJtfXijkSaOqvLG-YwA0ELMM&callback=initMap">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH_vcCJbKYJtfXijkSaOqvLG-YwA0ELMM&libraries=places&callback=initMap">
   </script>
 </body>
 
