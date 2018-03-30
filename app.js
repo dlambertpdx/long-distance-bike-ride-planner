@@ -1,5 +1,5 @@
 
-//This is not working for some reason
+const STORE = {origin: 'Portland, OR', destination: 'Gresham, OR'};
 const setTotal = total => document.getElementById('total').innerHTML = total + ' miles';
 
 let directionsService;
@@ -19,7 +19,8 @@ function initMap() {
   });
 
   directionsDisplay.setMap(map);
-  calculateAndDisplayRoute(directionsService, directionsDisplay);
+  render();
+
 //   document.getElementById('mode').addEventListener('change', function () {
 //     calculateAndDisplayRoute(directionsService, directionsDisplay);
 //   });
@@ -31,12 +32,17 @@ function initMap() {
 
 }
 
+function render() {
+  calculateAndDisplayRoute(directionsService, directionsDisplay, STORE.origin, STORE.destination);
+
+}
+
 function formSubmit() {
   $('#location-form').submit((e) => {
     e.preventDefault();
-    const startInput = $(e.currentTarget).find('#start-input').val();
-    const endInput = $(e.currentTarget).find('#end-input').val();
-    calculateAndDisplayRoute(directionsService, directionsDisplay, startInput, endInput);
+    STORE.origin = $(e.currentTarget).find('#start-input').val();
+    STORE.destination = $(e.currentTarget).find('#end-input').val();
+    render();
   });
 }
 
