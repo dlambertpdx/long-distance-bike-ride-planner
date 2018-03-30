@@ -33,11 +33,15 @@ function initMap() {
 }
 
 function render() {
-  calculateAndDisplayRoute(directionsService, directionsDisplay, STORE.origin, STORE.destination);
+  calculateAndDisplayRoute(
+    directionsService.route.bind(directionsService), 
+    directionsDisplay.setDirections.bind(directionsDisplay), 
+    STORE.origin, STORE.destination);
 
 }
 
 function formSubmit() {
+
   $('#location-form').submit((e) => {
     e.preventDefault();
     STORE.origin = $(e.currentTarget).find('#start-input').val();
@@ -47,16 +51,16 @@ function formSubmit() {
 }
 
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay, origin, destination) {
+function calculateAndDisplayRoute(route, setDirections, origin, destination) {
   // var selectedMode = document.getElementById('mode').value;
-  directionsService.route({
+  route({
     origin: origin,
     destination: destination,
     // waypoints: [{ location: 'Tryon Creek, Portland, OR' }, { location: 'Woodstock, Portland, OR' }],
     travelMode: 'BICYCLING'
   }, function (response, status) {
     if (status == 'OK') {
-      directionsDisplay.setDirections(response);
+      setDirections(response);
     } else {
       window.alert('Directions request failed due to ' + status);
     }
