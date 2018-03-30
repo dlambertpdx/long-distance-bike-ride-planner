@@ -1,5 +1,5 @@
 
-const STORE = {origin: 'Portland, OR', destination: 'Gresham, OR'};
+const STORE = {origin: 'Oregon City, OR', destination: 'Vancouver, OR'};
 const setTotal = total => document.getElementById('total').innerHTML = total + ' miles';
 
 let directionsService;
@@ -52,10 +52,10 @@ function formSubmit() {
 
 
 function calculateAndDisplayRoute(route, setDirections, origin, destination) {
-  // var selectedMode = document.getElementById('mode').value;
   route({
     origin: origin,
     destination: destination,
+    // add waypoint functionality later
     // waypoints: [{ location: 'Tryon Creek, Portland, OR' }, { location: 'Woodstock, Portland, OR' }],
     travelMode: 'BICYCLING'
   }, function (response, status) {
