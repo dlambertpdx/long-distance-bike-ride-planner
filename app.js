@@ -18,6 +18,10 @@ function initMap() {
     disableDefaultUI: true
   });
 
+  // AUTOCOMLETE
+  new autocompleteDirectionsHandler(map);
+  
+
   directionsDisplay.setMap(map);
   render();
 
@@ -30,6 +34,15 @@ function initMap() {
     setTotal(computeTotalDistance(directionsDisplay.getDirections()));
   });
 
+}
+
+function autocompleteDirectionsHandler(map){
+  var originInput = document.getElementById('start-input');
+  var destinationInput = document.getElementById('end-input');
+  var originAutocomplete = new google.maps.places.Autocomplete(
+    originInput, {placeIdOnly: true});
+var destinationAutocomplete = new google.maps.places.Autocomplete(
+    destinationInput, {placeIdOnly: true});
 }
 
 function render() {
