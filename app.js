@@ -1,5 +1,5 @@
 
-const STORE = {origin: 'Oregon City, OR', destination: 'Vancouver, OR'};
+const STORE = {origin: 'Boring, OR', destination: 'Vancouver, OR'};
 const setTotal = total => document.getElementById('total').innerHTML = total + ' miles';
 
 let directionsService;
