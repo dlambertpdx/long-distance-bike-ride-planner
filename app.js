@@ -35,13 +35,13 @@ function initMap() {
   });
 
 }
-
+//refactor autocomplete
 function autocompleteDirectionsHandler(map){
-  var originInput = document.getElementById('start-input');
-  var destinationInput = document.getElementById('end-input');
-  var originAutocomplete = new google.maps.places.Autocomplete(
+  let originInput = document.getElementById('start-input');
+  let destinationInput = document.getElementById('end-input');
+  let originAutocomplete = new google.maps.places.Autocomplete(
     originInput, {placeIdOnly: true});
-var destinationAutocomplete = new google.maps.places.Autocomplete(
+  let destinationAutocomplete = new google.maps.places.Autocomplete(
     destinationInput, {placeIdOnly: true});
 }
 
