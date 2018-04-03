@@ -1,6 +1,6 @@
 
 #main {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Roboto', sans-serif;
   height: 100vh;
   display: flex;
 }
@@ -17,6 +17,34 @@
   flex-wrap: wrap;
   height: 100vh;
   padding: 10px;
+}
+
+.searchbox {
+  border-left-style: none;
+  border-right-style: none;
+  border-top-style: none; 
+  border-bottom: solid .75px rgb(136, 136, 136);
+  color: rgb(136, 136, 136);
+  width: 85%;
+  padding: 8px 52px 8px 22px;
+  font-size: 14px;
+}
+
+button {
+  margin: 15px;
+  padding: 5px;
+  background-color: #4285f4;
+  width: 150px;
+  border: none;
+  color: white;
+}
+
+button:hover {
+  background-color: #70a4f7;
+}
+
+# {
+  color: rgb(221, 221, 221);
 }
 
 @media all and (max-width: 500px) {

@@ -12,6 +12,7 @@ function initMap() {
     map: map,
     panel: document.getElementById('right-panel')
   });
+
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
     center: { lat: 45.5231, lng: -122.6765 },  //Portland, OR
@@ -50,7 +51,6 @@ function render() {
     directionsService.route.bind(directionsService), 
     directionsDisplay.setDirections.bind(directionsDisplay), 
     STORE.origin, STORE.destination);
-
 }
 
 function formSubmit() {
@@ -61,6 +61,7 @@ function formSubmit() {
     STORE.destination = $(e.currentTarget).find('#end-input').val();
     render();
   });
+
 }
 
 
@@ -71,6 +72,7 @@ function calculateAndDisplayRoute(route, setDirections, origin, destination) {
     // add waypoint functionality later
     // waypoints: [{ location: 'Tryon Creek, Portland, OR' }, { location: 'Woodstock, Portland, OR' }],
     travelMode: 'BICYCLING'
+    
   }, function (response, status) {
     if (status == 'OK') {
       setDirections(response);
