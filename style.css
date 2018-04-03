@@ -19,24 +19,25 @@
   padding: 10px;
 }
 
-.searchbox {
-  border-left-style: none;
-  border-right-style: none;
-  border-top-style: none; 
-  border-bottom: solid .75px rgb(136, 136, 136);
+.searchbox { 
+  border: solid .75px rgb(136, 136, 136);
+  border-radius: 6px;
   color: rgb(136, 136, 136);
-  width: 85%;
+  width: 70%;
   padding: 8px 52px 8px 22px;
   font-size: 14px;
+  margin-bottom: 5px;
 }
 
 button {
-  margin: 15px;
   padding: 5px;
   background-color: #4285f4;
-  width: 150px;
   border: none;
+  border-radius: 6px;
   color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  align-items: center;
 }
 
 button:hover {
