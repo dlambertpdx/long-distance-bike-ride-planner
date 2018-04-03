@@ -43,9 +43,6 @@ button:hover {
   background-color: #70a4f7;
 }
 
-# {
-  color: rgb(221, 221, 221);
-}
 
 @media all and (max-width: 500px) {
   #main {
