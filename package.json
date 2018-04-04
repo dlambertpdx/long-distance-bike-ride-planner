@@ -1,0 +1,23 @@
+{
+  "name": "api-capstone",
+  "version": "1.0.0",
+  "description": "https://sanvean74.github.io/api-capstone",
+  "main": "app.js",
+  "dependencies": {
+    "eslint": "^4.19.1"
+  },
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanvean74/api-capstone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanvean74/api-capstone/issues"
+  },
+  "homepage": "https://github.com/sanvean74/api-capstone#readme"
+}
