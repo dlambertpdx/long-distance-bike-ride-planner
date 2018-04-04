@@ -1,11 +1,17 @@
-/*global document google */
+/* global document google */
 const STORE = { origin: '', destination: '' };
 const setTotal = total => document.getElementById('total').innerHTML = `${total} miles`;
 
 let directionsService;
-let directionDisplay;
+let directionsDisplay;
 
 function initMap() {
+  const map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: { lat: 45.5231, lng: -122.6765 }, // Portland, OR
+    disableDefaultUI: true,
+  });
+
   directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer({
     draggable: true,
@@ -13,11 +19,6 @@ function initMap() {
     panel: document.getElementById('right-panel'),
   });
 
-  let map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 14,
-    center: { lat: 45.5231, lng: -122.6765 }, // Portland, OR
-    disableDefaultUI: true,
-  });
 
   // AUTOCOMLETE
   new autocompleteDirectionsHandler(map);
