@@ -1,5 +1,5 @@
 
-const STORE = {origin: 'Boring, OR', destination: 'Vancouver, OR'};
+const STORE = {origin:'' , destination:''};
 const setTotal = total => document.getElementById('total').innerHTML = total + ' miles';
 
 let directionsService;
@@ -37,31 +37,36 @@ function initMap() {
 
 }
 //refactor autocomplete
-function autocompleteDirectionsHandler(map){
+function autocompleteDirectionsHandler(){
   let originInput = document.getElementById('start-input');
   let destinationInput = document.getElementById('end-input');
   let originAutocomplete = new google.maps.places.Autocomplete(
     originInput, {placeIdOnly: true});
+    originAutocomplete.addListener('place_changed', function(){
+      const originPlace = originAutocomplete.getPlace();
+     STORE.origin = originPlace.name;
+     render();
+
+    })
   let destinationAutocomplete = new google.maps.places.Autocomplete(
     destinationInput, {placeIdOnly: true});
+    destinationAutocomplete.addListener('place_changed', function(){
+      const destinationPlace = destinationAutocomplete.getPlace();
+     STORE.destination = destinationPlace.name;
+     render();
+
+    })
 }
 
 function render() {
-  calculateAndDisplayRoute(
-    directionsService.route.bind(directionsService), 
-    directionsDisplay.setDirections.bind(directionsDisplay), 
-    STORE.origin, STORE.destination);
-}
-
-function formSubmit() {
-
-  $('#location-form').submit((e) => {
-    e.preventDefault();
-    STORE.origin = $(e.currentTarget).find('#start-input').val();
-    STORE.destination = $(e.currentTarget).find('#end-input').val();
-    render();
-  });
-
+    if(STORE.origin && STORE.destination){
+      calculateAndDisplayRoute(
+        directionsService.route.bind(directionsService), 
+        directionsDisplay.setDirections.bind(directionsDisplay), 
+        STORE.origin, STORE.destination);
+    } else {
+      
+    }
 }
 
 
