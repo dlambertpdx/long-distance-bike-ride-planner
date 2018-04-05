@@ -5,6 +5,41 @@ const setTotal = total => document.getElementById('total').innerHTML = `${total}
 let directionsService;
 let directionsDisplay;
 
+function computeTotalDistance(result) {
+  let total = 0;
+  const myroute = result.routes[0];
+  for (let i = 0; i < myroute.legs.length; i++) {
+    total += myroute.legs[i].distance.value;
+  }
+  total = parseFloat(total / 1609).toFixed(1);
+  return total;
+}
+
+function calculateAndDisplayRoute(route, setDirections, origin, destination) {
+  route({
+    origin,
+    destination,
+    travelMode: 'BICYCLING',
+
+  }, (response, status) => {
+    if (status === 'OK') {
+      setDirections(response);
+    } else {
+      window.alert(`Directions request failed due to ${status}`);
+    }
+  });
+}
+
+function render() {
+  if (STORE.origin && STORE.destination) {
+    calculateAndDisplayRoute(
+      directionsService.route.bind(directionsService),
+      directionsDisplay.setDirections.bind(directionsDisplay),
+      STORE.origin, STORE.destination,
+    );
+  }
+}
+
 function initMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
@@ -21,21 +56,17 @@ function initMap() {
 
 
   // AUTOCOMLETE
-  new autocompleteDirectionsHandler(map);
+  autocompleteDirectionsHandler(map);
 
 
   directionsDisplay.setMap(map);
   render();
 
-  //   document.getElementById('mode').addEventListener('change', function () {
-  //     calculateAndDisplayRoute(directionsService, directionsDisplay);
-  //   });
-
   directionsDisplay.addListener('directions_changed', () => {
     setTotal(computeTotalDistance(directionsDisplay.getDirections()));
   });
 }
-// refactor autocomplete
+
 function autocompleteDirectionsHandler() {
   const originInput = document.getElementById('start-input');
   const destinationInput = document.getElementById('end-input');
@@ -45,6 +76,7 @@ function autocompleteDirectionsHandler() {
     STORE.origin = originPlace.name;
     render();
   });
+
   const destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput, { placeIdOnly: true });
   destinationAutocomplete.addListener('place_changed', () => {
     const destinationPlace = destinationAutocomplete.getPlace();
@@ -52,45 +84,3 @@ function autocompleteDirectionsHandler() {
     render();
   });
 }
-
-function render() {
-  if (STORE.origin && STORE.destination) {
-    calculateAndDisplayRoute(
-      directionsService.route.bind(directionsService),
-      directionsDisplay.setDirections.bind(directionsDisplay),
-      STORE.origin, STORE.destination,
-    );
-  } else {
-
-  }
-}
-
-
-function calculateAndDisplayRoute(route, setDirections, origin, destination) {
-  route({
-    origin,
-    destination,
-    // add waypoint functionality later
-    // waypoints: [{ location: 'Tryon Creek, Portland, OR' }, { location: 'Woodstock, Portland, OR' }],
-    travelMode: 'BICYCLING',
-
-  }, (response, status) => {
-    if (status == 'OK') {
-      setDirections(response);
-    } else {
-      window.alert(`Directions request failed due to ${status}`);
-    }
-  });
-}
-
-function computeTotalDistance(result) {
-  let total = 0;
-  const myroute = result.routes[0];
-  for (let i = 0; i < myroute.legs.length; i++) {
-    total += myroute.legs[i].distance.value;
-  }
-  total = parseFloat(total / 1609).toFixed(1);
-  return total;
-}
-
-$(formSubmit);
