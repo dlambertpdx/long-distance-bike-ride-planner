@@ -4,6 +4,7 @@ const setTotal = total => document.getElementById('total').innerHTML = `${total}
 
 let directionsService;
 let directionsDisplay;
+let map;
 
 function computeTotalDistance(result) {
   let total = 0;
@@ -58,8 +59,24 @@ function autocompleteDirectionsHandler() {
   });
 }
 
+// function createMarker(place) {
+//   const placeLoc = place.geometry.location;
+//   const marker = new google.maps.Marker({
+//     map,
+//     position: place.geometry.location,
+//   });
+// }
+
+// function callback(results, status) {
+//   if (status === google.maps.places.PlacesService.OK) {
+//     for (let i = 0; i < results.length; i += 1) {
+//       createMarker(results[i]);
+//     }
+//   }
+// }
+
 function initMap() {
-  const map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
     center: { lat: 45.5231, lng: -122.6765 }, // Portland, OR
     disableDefaultUI: true,
@@ -72,14 +89,20 @@ function initMap() {
     panel: document.getElementById('right-panel'),
   });
 
-  // AUTOCOMLETE
   autocompleteDirectionsHandler(map);
 
+  render();
 
   directionsDisplay.setMap(map);
-  render();
 
   directionsDisplay.addListener('directions_changed', () => {
     setTotal(computeTotalDistance(directionsDisplay.getDirections()));
   });
+
+  // const service = new google.maps.places.PlacesService(map);
+  // service.nearbySearch({
+  //   location: 'Portland, OR',
+  //   radius: 8500,
+  //   type: ['bike shop'],
+  // }, callback);
 }
