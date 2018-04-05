@@ -8,7 +8,7 @@ let directionsDisplay;
 function computeTotalDistance(result) {
   let total = 0;
   const myroute = result.routes[0];
-  for (let i = 0; i < myroute.legs.length; i++) {
+  for (let i = 0; i < myroute.legs.length; i += 1) {
     total += myroute.legs[i].distance.value;
   }
   total = parseFloat(total / 1609).toFixed(1);
@@ -24,8 +24,6 @@ function calculateAndDisplayRoute(route, setDirections, origin, destination) {
   }, (response, status) => {
     if (status === 'OK') {
       setDirections(response);
-    } else {
-      window.alert(`Directions request failed due to ${status}`);
     }
   });
 }
@@ -38,6 +36,26 @@ function render() {
       STORE.origin, STORE.destination,
     );
   }
+}
+
+function autocompleteDirectionsHandler() {
+  const originInput = document.getElementById('start-input');
+  const destinationInput = document.getElementById('end-input');
+  const originAutocomplete = new
+  google.maps.places.Autocomplete(originInput, { placeIdOnly: true });
+  originAutocomplete.addListener('place_changed', () => {
+    const originPlace = originAutocomplete.getPlace();
+    STORE.origin = originPlace.name;
+    render();
+  });
+
+  const destinationAutocomplete = new
+  google.maps.places.Autocomplete(destinationInput, { placeIdOnly: true });
+  destinationAutocomplete.addListener('place_changed', () => {
+    const destinationPlace = destinationAutocomplete.getPlace();
+    STORE.destination = destinationPlace.name;
+    render();
+  });
 }
 
 function initMap() {
@@ -54,7 +72,6 @@ function initMap() {
     panel: document.getElementById('right-panel'),
   });
 
-
   // AUTOCOMLETE
   autocompleteDirectionsHandler(map);
 
@@ -64,23 +81,5 @@ function initMap() {
 
   directionsDisplay.addListener('directions_changed', () => {
     setTotal(computeTotalDistance(directionsDisplay.getDirections()));
-  });
-}
-
-function autocompleteDirectionsHandler() {
-  const originInput = document.getElementById('start-input');
-  const destinationInput = document.getElementById('end-input');
-  const originAutocomplete = new google.maps.places.Autocomplete(originInput, { placeIdOnly: true });
-  originAutocomplete.addListener('place_changed', () => {
-    const originPlace = originAutocomplete.getPlace();
-    STORE.origin = originPlace.name;
-    render();
-  });
-
-  const destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput, { placeIdOnly: true });
-  destinationAutocomplete.addListener('place_changed', () => {
-    const destinationPlace = destinationAutocomplete.getPlace();
-    STORE.destination = destinationPlace.name;
-    render();
   });
 }
