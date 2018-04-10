@@ -1,6 +1,6 @@
 /* global document google */
 const STORE = { origin: '', destination: '' };
-const setTotal = total => document.getElementById('total').innerHTML = `${total} miles`;
+const setTotal = (total) => { document.getElementById('total').innerHTML = `${total} miles`; };
 
 let directionsService;
 let directionsDisplay;
@@ -16,6 +16,11 @@ function computeTotalDistance(result) {
   return total;
 }
 
+// function findStopSteps(steps) {
+//   const totalSteps = steps.reduce((acc, next) => acc + next.value, 0);
+//   console.log(totalSteps);
+// }
+
 function calculateAndDisplayRoute(route, setDirections, origin, destination) {
   route({
     origin,
@@ -25,6 +30,10 @@ function calculateAndDisplayRoute(route, setDirections, origin, destination) {
   }, (response, status) => {
     if (status === 'OK') {
       setDirections(response);
+      const steps = response.routes[0].legs[0].steps;
+      for (let i = 0; i < steps.length; i += 1) {
+        console.log(steps[i].duration.value);
+      }
     }
   });
 }
@@ -75,7 +84,7 @@ function autocompleteDirectionsHandler() {
 //   }
 // }
 
-function initMap() {
+function initMap() { // eslint-disable-line no-unused-vars
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
     center: { lat: 45.5231, lng: -122.6765 }, // Portland, OR
