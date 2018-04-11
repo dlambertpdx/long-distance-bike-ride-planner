@@ -1,7 +1,7 @@
 /* global document google */
 const STORE = { origin: '', destination: '' };
 const setTotal = (total) => { document.getElementById('total').innerHTML = `${total} miles`; };
-
+const totalSteps = [];
 let directionsService;
 let directionsDisplay;
 let map;
@@ -30,9 +30,10 @@ function calculateAndDisplayRoute(route, setDirections, origin, destination) {
   }, (response, status) => {
     if (status === 'OK') {
       setDirections(response);
+      // testing loop here -- change to map. working on this in codepen
       const steps = response.routes[0].legs[0].steps;
       for (let i = 0; i < steps.length; i += 1) {
-        console.log(steps[i].duration.value);
+        return steps[i].duration.value;
       }
     }
   });
