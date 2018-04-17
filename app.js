@@ -5,12 +5,15 @@ let directionsService;
 let directionsDisplay;
 let map;
 
-function getStops(result, data) {
-
+function getStops(data) {
+const steps = data.routes[0].legs[0].steps.map(v => {
+  return v.duration.value;
+});
+console.log(steps);
 }
 
 function getCoordinates(steps) {
-  
+
 }
 
 function computeTotalDistance(result) {
@@ -32,7 +35,21 @@ function calculateAndDisplayRoute(route, setDirections, origin, destination) {
   }, (response, status) => {
     if (status === 'OK') {
       setDirections(response);
-      }      
+      }
+      const steps = response.routes[0].legs[0].steps.map(v => {
+        return v.duration.value;
+      });
+      const stopsIndexes = [];
+      let acc = 0;
+      for(let i = 0; i < steps.length; i += 1){
+        acc = acc + steps[i];
+        if(acc > 150) {
+          stopsIndexes.push(i);
+          acc = 0;
+        }
+      }
+      console.log(stopsIndexes);
+      return stopsIndexes.map(index => response[index]);
   });
 }
 
