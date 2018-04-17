@@ -1,10 +1,17 @@
 /* global document google */
 const STORE = { origin: '', destination: '' };
 const setTotal = (total) => { document.getElementById('total').innerHTML = `${total} miles`; };
-const totalSteps = [];
 let directionsService;
 let directionsDisplay;
 let map;
+
+function getStops(result, data) {
+
+}
+
+function getCoordinates(steps) {
+  
+}
 
 function computeTotalDistance(result) {
   let total = 0;
@@ -16,11 +23,6 @@ function computeTotalDistance(result) {
   return total;
 }
 
-// function findStopSteps(steps) {
-//   const totalSteps = steps.reduce((acc, next) => acc + next.value, 0);
-//   console.log(totalSteps);
-// }
-
 function calculateAndDisplayRoute(route, setDirections, origin, destination) {
   route({
     origin,
@@ -30,12 +32,7 @@ function calculateAndDisplayRoute(route, setDirections, origin, destination) {
   }, (response, status) => {
     if (status === 'OK') {
       setDirections(response);
-      // testing loop here -- change to map. working on this in codepen
-      const steps = response.routes[0].legs[0].steps;
-      for (let i = 0; i < steps.length; i += 1) {
-        return steps[i].duration.value;
-      }
-    }
+      }      
   });
 }
 
@@ -69,22 +66,6 @@ function autocompleteDirectionsHandler() {
   });
 }
 
-// function createMarker(place) {
-//   const placeLoc = place.geometry.location;
-//   const marker = new google.maps.Marker({
-//     map,
-//     position: place.geometry.location,
-//   });
-// }
-
-// function callback(results, status) {
-//   if (status === google.maps.places.PlacesService.OK) {
-//     for (let i = 0; i < results.length; i += 1) {
-//       createMarker(results[i]);
-//     }
-//   }
-// }
-
 function initMap() { // eslint-disable-line no-unused-vars
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
@@ -108,11 +89,4 @@ function initMap() { // eslint-disable-line no-unused-vars
   directionsDisplay.addListener('directions_changed', () => {
     setTotal(computeTotalDistance(directionsDisplay.getDirections()));
   });
-
-  // const service = new google.maps.places.PlacesService(map);
-  // service.nearbySearch({
-  //   location: 'Portland, OR',
-  //   radius: 8500,
-  //   type: ['bike shop'],
-  // }, callback);
 }
