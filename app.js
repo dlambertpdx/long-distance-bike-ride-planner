@@ -4,16 +4,28 @@ const setTotal = (total) => { document.getElementById('total').innerHTML = `${to
 let directionsService;
 let directionsDisplay;
 let map;
+let placesService;
+let infowindow;
 
 function getStops(data) {
-const steps = data.routes[0].legs[0].steps.map(v => {
-  return v.duration.value;
-});
-console.log(steps);
+  const steps = data.map(v => v.duration.value);
+  const stopsIndexes = [];
+  let acc = 0;
+  for (let i = 0; i < steps.length; i += 1) {
+    acc += steps[i];
+    if (acc > 60 * 60) {
+      stopsIndexes.push(i);
+      acc = 0;
+    }
+  }
+  return stopsIndexes.map(index => data[index]);
 }
 
 function getCoordinates(steps) {
-
+  const coordinates = steps.map(v =>
+    v.end_location, // returns coordinate objects
+  );
+  return coordinates; // returns array of coordinates
 }
 
 function computeTotalDistance(result) {
@@ -26,7 +38,7 @@ function computeTotalDistance(result) {
   return total;
 }
 
-function calculateAndDisplayRoute(route, setDirections, origin, destination) {
+function calculateAndDisplayRoute(route, setDirections, placesSearch, origin, destination) {
   route({
     origin,
     destination,
@@ -35,21 +47,43 @@ function calculateAndDisplayRoute(route, setDirections, origin, destination) {
   }, (response, status) => {
     if (status === 'OK') {
       setDirections(response);
-      }
-      const steps = response.routes[0].legs[0].steps.map(v => {
-        return v.duration.value;
+      const stops = getStops(response.routes[0].legs[0].steps);
+      const coords = getCoordinates(stops);
+      coords.forEach((v) => {
+        createStopMarket(v);
+        placesSearch({ location: v, radius: 8000, keyword: 'bike shop' }, handlePlaceResults);
       });
-      const stopsIndexes = [];
-      let acc = 0;
-      for(let i = 0; i < steps.length; i += 1){
-        acc = acc + steps[i];
-        if(acc > 150) {
-          stopsIndexes.push(i);
-          acc = 0;
-        }
-      }
-      console.log(stopsIndexes);
-      return stopsIndexes.map(index => response[index]);
+    }
+  });
+}
+function createStopMarket(coordinate) {
+  return new google.maps.Marker({
+    position: coordinate,
+    map,
+  });
+}
+
+function handlePlaceResults(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (let i = 0; i < results.length; i++) {
+      createPlaceMarker(results[i]);
+    }
+  }
+}
+
+function createPlaceMarker(place) {
+  const placeLoc = place.geometry.location;
+  const image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+    icon: image,
+  });
+
+  google.maps.event.addListener(marker, 'click', () => {
+    infowindow.setContent(place.name);
+    infowindow.open(map, marker);
   });
 }
 
@@ -58,6 +92,7 @@ function render() {
     calculateAndDisplayRoute(
       directionsService.route.bind(directionsService),
       directionsDisplay.setDirections.bind(directionsDisplay),
+      placesService.nearbySearch.bind(placesService),
       STORE.origin, STORE.destination,
     );
   }
@@ -98,6 +133,9 @@ function initMap() { // eslint-disable-line no-unused-vars
   });
 
   autocompleteDirectionsHandler(map);
+
+  placesService = new google.maps.places.PlacesService(map);
+  infowindow = new google.maps.InfoWindow();
 
   render();
 
