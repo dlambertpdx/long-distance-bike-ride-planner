@@ -5,6 +5,34 @@
   display: flex;
 }
 
+body {
+  background-image: url('https://i.imgur.com/SWDUTth.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  background-color: rgba(0,0,0,0.5);
+  width: 65%;
+  margin: 0 auto;
+}
+
+#main-description {
+  width: 60%;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  margin: 0 auto;
+  padding: 45px;
+}
+
+#main-description h1 {
+  text-align: center;
+}
+
+#main-description p {
+  font-size: 1.1em;
+}
+
 #map {
  order: 1;
  flex: 3;

@@ -40,8 +40,6 @@ function computeTotalDistance(result) {
 function createPlaceMarker(place) {
   const placeLoc = place.geometry.location; // eslint-disable-line no-unused-vars
   const image = 'https://i.imgur.com/Deyw0mB.png';
-  // const image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-
   const marker = new google.maps.Marker({
     map,
     position: place.geometry.location,
@@ -61,7 +59,8 @@ function handlePlaceResults(results, status) {
     }
   }
 }
-function createStopMarket(coordinate) {
+
+function createStopMarker(coordinate) {
   return new google.maps.Marker({
     position: coordinate,
     map,
@@ -80,8 +79,8 @@ function calculateAndDisplayRoute(route, setDirections, placesSearch, origin, de
       const stops = getStops(response.routes[0].legs[0].steps);
       const coords = getCoordinates(stops);
       coords.forEach((v) => {
-        createStopMarket(v);
-        placesSearch({ location: v, radius: 8000, keyword: 'bike shop' }, handlePlaceResults);
+        createStopMarker(v);
+        placesSearch({ location: v, radius: 6000, keyword: 'bike shop' }, handlePlaceResults);
       });
     }
   });
@@ -135,13 +134,14 @@ function initMap() { // eslint-disable-line no-unused-vars
   autocompleteDirectionsHandler(map);
 
   placesService = new google.maps.places.PlacesService(map);
-  infowindow = new google.maps.InfoWindow();
 
-  render();
+  infowindow = new google.maps.InfoWindow();
 
   directionsDisplay.setMap(map);
 
   directionsDisplay.addListener('directions_changed', () => {
     setTotal(computeTotalDistance(directionsDisplay.getDirections()));
   });
+
+  render();
 }
