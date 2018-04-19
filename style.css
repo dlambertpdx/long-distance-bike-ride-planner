@@ -1,4 +1,6 @@
 
+ @import url('https://fonts.googleapis.com/css?family=Roboto|Baloo+Paaji');
+
 #main {
   font-family: 'Roboto', sans-serif;
   height: 100vh;
@@ -6,31 +8,57 @@
 }
 
 body {
-  background-image: url('https://i.imgur.com/SWDUTth.jpg');
+  font-family: 'Roboto';
+  background-image: url('https://i.imgur.com/i3phwJj.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .container {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.7);
   width: 65%;
   margin: 0 auto;
+  border-radius: 15px;
 }
 
 #main-description {
   width: 60%;
-  font-family: 'Roboto', sans-serif;
-  color: white;
+  color: #FFFAF0;
   margin: 0 auto;
   padding: 45px;
 }
 
 #main-description h1 {
   text-align: center;
+  font-family: 'Baloo paaji';
+  font-size: 2.5em;
 }
 
 #main-description p {
-  font-size: 1.1em;
+  font-size: 1em;
+}
+
+.feature-list {
+  list-style: square;
+}
+
+.icon {
+  vertical-align: sub;
+}
+
+.enter-btn {
+  display: block;
+  font-family: 'Baloo paaji';
+  font-size: 2em;
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+  background: darkkhaki;
+}
+
+.enter-btn a {
+  color: #FFFAF0;
+  text-decoration: none;
 }
 
 #map {
