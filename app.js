@@ -23,8 +23,7 @@ function getStops(data) {
 
 function getCoordinates(steps) {
   const coordinates = steps.map(v =>
-    v.end_location, // returns coordinate objects
-  );
+    v.end_location);
   return coordinates; // returns array of coordinates
 }
 
@@ -36,6 +35,36 @@ function computeTotalDistance(result) {
   }
   total = parseFloat(total / 1609).toFixed(1);
   return total;
+}
+
+function createPlaceMarker(place) {
+  const placeLoc = place.geometry.location; // eslint-disable-line no-unused-vars
+  const image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+    icon: image,
+  });
+
+  google.maps.event.addListener(marker, 'click', () => {
+    infowindow.setContent(place.name);
+    infowindow.open(map, marker);
+  });
+}
+
+function handlePlaceResults(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (let i = 0; i < results.length; i += 1) {
+      createPlaceMarker(results[i]);
+    }
+  }
+}
+function createStopMarket(coordinate) {
+  return new google.maps.Marker({
+    position: coordinate,
+    map,
+  });
 }
 
 function calculateAndDisplayRoute(route, setDirections, placesSearch, origin, destination) {
@@ -54,36 +83,6 @@ function calculateAndDisplayRoute(route, setDirections, placesSearch, origin, de
         placesSearch({ location: v, radius: 8000, keyword: 'bike shop' }, handlePlaceResults);
       });
     }
-  });
-}
-function createStopMarket(coordinate) {
-  return new google.maps.Marker({
-    position: coordinate,
-    map,
-  });
-}
-
-function handlePlaceResults(results, status) {
-  if (status === google.maps.places.PlacesServiceStatus.OK) {
-    for (let i = 0; i < results.length; i++) {
-      createPlaceMarker(results[i]);
-    }
-  }
-}
-
-function createPlaceMarker(place) {
-  const placeLoc = place.geometry.location;
-  const image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-
-  const marker = new google.maps.Marker({
-    map,
-    position: place.geometry.location,
-    icon: image,
-  });
-
-  google.maps.event.addListener(marker, 'click', () => {
-    infowindow.setContent(place.name);
-    infowindow.open(map, marker);
   });
 }
 
