@@ -80,7 +80,7 @@ function calculateAndDisplayRoute(route, setDirections, placesSearch, origin, de
       const coords = getCoordinates(stops);
       coords.forEach((v) => {
         createStopMarker(v);
-        placesSearch({ location: v, radius: 6000, keyword: 'bike shop' }, handlePlaceResults);
+        placesSearch({ location: v, radius: 5920, keyword: 'bike shop' }, handlePlaceResults);
       });
     }
   });

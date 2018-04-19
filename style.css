@@ -16,7 +16,7 @@ body {
 
 .container {
   background-color: rgba(0,0,0,0.7);
-  width: 65%;
+  width: 80%;
   margin: 0 auto;
   border-radius: 15px;
 }
@@ -31,11 +31,11 @@ body {
 #main-description h1 {
   text-align: center;
   font-family: 'Baloo paaji';
-  font-size: 2.5em;
+  color: khaki;
 }
 
 #main-description p {
-  font-size: 1em;
+  font-size: 18px;
 }
 
 .feature-list {
@@ -49,16 +49,24 @@ body {
 .enter-btn {
   display: block;
   font-family: 'Baloo paaji';
-  font-size: 2em;
+  font-size: 25px;
   width: 200px;
   margin: 0 auto;
   text-align: center;
-  background: darkkhaki;
+  background: olive;
+  border-radius: 6px;
 }
 
 .enter-btn a {
   color: #FFFAF0;
   text-decoration: none;
+}
+
+.enter-btn a:hover {
+  color: #FFFAF0;
+  text-decoration: none;
+  background: darkkhaki;
+  width: 100%;
 }
 
 #map {
@@ -73,6 +81,7 @@ body {
   flex-wrap: wrap;
   height: 100vh;
   padding: 10px;
+  background: white;
 }
 
 .searchbox { 
