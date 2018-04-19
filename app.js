@@ -39,7 +39,8 @@ function computeTotalDistance(result) {
 
 function createPlaceMarker(place) {
   const placeLoc = place.geometry.location; // eslint-disable-line no-unused-vars
-  const image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+  const image = 'https://i.imgur.com/Deyw0mB.png';
+  // const image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 
   const marker = new google.maps.Marker({
     map,
@@ -126,7 +127,7 @@ function initMap() { // eslint-disable-line no-unused-vars
 
   directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer({
-    draggable: true,
+    draggable: false,
     map,
     panel: document.getElementById('right-panel'),
   });
