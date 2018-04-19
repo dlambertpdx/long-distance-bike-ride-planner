@@ -16,13 +16,14 @@ body {
 
 .container {
   background-color: rgba(0,0,0,0.7);
-  width: 80%;
+  width: 75%;
   margin: 0 auto;
   border-radius: 15px;
+  padding: 30px;
 }
 
 #main-description {
-  width: 60%;
+  display: inline;
   color: #FFFAF0;
   margin: 0 auto;
   padding: 30px;
@@ -40,6 +41,7 @@ body {
 
 .feature-list {
   list-style: square;
+  margin-left: 25%;
 }
 
 .icon {
@@ -113,6 +115,10 @@ button:hover {
 @media all and (max-width: 500px) {
   #main {
     flex-direction: column;
+  }
+
+  .feature-list {
+    margin: 0 auto;
   }
 
   #right-panel {
