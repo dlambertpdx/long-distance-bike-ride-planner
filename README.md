@@ -1,5 +1,5 @@
 # Long Distance Bike Ride Planner
-A planning tool for cyclists who are planning a ride longer than an hour in length, to pre-plan a route that will show bike shops and resting stops along their given route. (eg: Starting point: Portland, OR  -- End Point: Salem, OR)
+A planning tool for cyclists who are planning a ride longer than an hour in length (ex: Starting point: Portland, OR  -- End Point: Salem, OR), to pre-plan a route that will show bike shops and resting stops along their given route. 
 
 ## Demo
 [Live Demo](https://sanvean74.github.io/api-capstone)
