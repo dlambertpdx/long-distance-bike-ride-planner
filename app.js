@@ -6,7 +6,7 @@ let directionsDisplay;
 let map;
 let placesService;
 let infowindow;
-const markers = [];
+let markers = [];
 
 function getStops(data) {
   const steps = data.map(v => v.duration.value);
@@ -51,12 +51,13 @@ function createPlaceMarker(place) {
     infowindow.setContent(place.name);
     infowindow.open(map, marker);
   });
+  return marker;
 }
 
 function handlePlaceResults(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (let i = 0; i < results.length; i += 1) {
-      createPlaceMarker(results[i]);
+      markers.push(createPlaceMarker(results[i]));
     }
   }
 }
@@ -66,6 +67,13 @@ function createStopMarker(coordinate) {
     position: coordinate,
     map,
   });
+}
+
+function deleteMarkers() {
+  markers.forEach((v) => {
+    v.setMap(null);
+  });
+  markers = [];
 }
 
 function calculateAndDisplayRoute(route, setDirections, placesSearch, origin, destination) {
@@ -79,8 +87,9 @@ function calculateAndDisplayRoute(route, setDirections, placesSearch, origin, de
       setDirections(response);
       const stops = getStops(response.routes[0].legs[0].steps);
       const coords = getCoordinates(stops);
+      deleteMarkers();
       coords.forEach((v) => {
-        createStopMarker(v);
+        markers.push(createStopMarker(v));
         placesSearch({ location: v, radius: 5920, keyword: 'bike shop' }, handlePlaceResults);
       });
     }
