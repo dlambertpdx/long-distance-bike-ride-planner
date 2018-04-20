@@ -6,6 +6,7 @@ let directionsDisplay;
 let map;
 let placesService;
 let infowindow;
+const markers = [];
 
 function getStops(data) {
   const steps = data.map(v => v.duration.value);
@@ -65,6 +66,7 @@ function createStopMarker(coordinate) {
     position: coordinate,
     map,
   });
+  markers.push();
 }
 
 function calculateAndDisplayRoute(route, setDirections, placesSearch, origin, destination) {
@@ -115,6 +117,17 @@ function autocompleteDirectionsHandler() {
     STORE.destination = destinationPlace.name;
     render();
   });
+}
+
+// clear markers
+function setMapOnAll(map) {
+  for (let i = 0; i < markers.length; i += 1) {
+    markers[i].setMap(map);
+  }
+}
+
+function clearMarkers() {
+  setMapOnAll(null);
 }
 
 function initMap() { // eslint-disable-line no-unused-vars

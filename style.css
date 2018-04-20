@@ -7,7 +7,7 @@
   display: flex;
 }
 
-body {
+.landing-bg {
   font-family: 'Roboto';
   background-image: url('https://i.imgur.com/i3phwJj.jpg');
   background-repeat: no-repeat;
