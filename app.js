@@ -66,7 +66,6 @@ function createStopMarker(coordinate) {
     position: coordinate,
     map,
   });
-  markers.push();
 }
 
 function calculateAndDisplayRoute(route, setDirections, placesSearch, origin, destination) {
