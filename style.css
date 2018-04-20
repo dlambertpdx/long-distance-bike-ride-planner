@@ -26,6 +26,7 @@
   color: #FFFAF0;
   margin: 0 auto;
   padding: 30px;
+  display: block;
 }
 
 #main-description h1 {
@@ -33,6 +34,7 @@
   font-family: 'Baloo paaji';
   color: khaki;
   font-weight: normal;
+  margin: 0 auto;
 }
 
 #main-description p {
@@ -48,7 +50,6 @@
   margin: 0 auto;
   list-style: square;
   line-height: 2.5;
-  /* text-align: center; */
 }
 
 .icon {
@@ -123,6 +124,22 @@ button:hover {
 @media all and (max-width: 500px) {
   #main {
     flex-direction: column;
+  }
+
+  .container {
+    padding: 1px;
+    width: 95%;
+  }
+  #main-description {
+    padding: 1px;
+  }
+
+  #main-description p {
+    font-size: .5em;
+  }
+
+  #main-description h1 {
+    font-size: 1.2em;
   }
 
   #right-panel {
