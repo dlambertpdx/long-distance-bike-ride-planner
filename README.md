@@ -6,6 +6,9 @@ A planning tool for cyclists who a planning a ride longer than an hour in length
 #### Desktop View
 ![Desktop View](https://i.imgur.com/QQlX53a.jpg)
 
+#### Mobile View
+![Mobile View](https://i.imgur.com/0pWsth0.png)
+
 #### User Story #1
 As a bike rider planning a long distance bike ride, I want to be able to plan my route, so that I see my route distance and path. (path is draggable on desktop version)
 
