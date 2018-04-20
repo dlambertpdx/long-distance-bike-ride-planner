@@ -18,11 +18,15 @@
     <div id="map"></div>
 
     <!-- NAV PANEL -->
-    <div id='right-panel'>
+    <div id='right-panel' role='sidebar' aria-label="results">
       <!-- location search form -->
+      <header role='banner'>
       <h3>Long Distance Bike Ride Planner</h3>
+      <p>Enter a start and end point that are an hour or more apart for best results</p>
+      </header>
+      <main role='main'>
       <div id="search">
-        <form id="location-form">
+        <form id="location-form" role='search'>
           <div>
             <input type="text" id="start-input" class='searchbox' placeholder="Enter Starting Point">
           </div>
@@ -30,13 +34,12 @@
 
             <input type="text" id="end-input" class='searchbox' placeholder="Enter Destination">
           </div>
-
         </form>
-        <!-- <button id="add-waypoint">Add Waypoint</button> -->
       </div>
+      </main>
 
       <!-- TOTAL DISTANCE OF ROUTE -->
-      <div class="totalDistance">
+      <div class="totalDistance" role='complementary'>
         <p>Total Distance:
           <span id='total'></span></p>
       </div>
