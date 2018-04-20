@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.8);
   width: 75%;
   margin: 0 auto;
   border-radius: 15px;
@@ -23,7 +23,6 @@ body {
 }
 
 #main-description {
-  display: inline;
   color: #FFFAF0;
   margin: 0 auto;
   padding: 30px;
@@ -33,15 +32,23 @@ body {
   text-align: center;
   font-family: 'Baloo paaji';
   color: khaki;
+  font-weight: normal;
 }
 
 #main-description p {
   font-size: 18px;
 }
 
+.features {
+  margin: 0 auto;
+}
+
 .feature-list {
+  display: block;
+  margin: 0 auto;
   list-style: square;
-  margin-left: 25%;
+  line-height: 2.5;
+  /* text-align: center; */
 }
 
 .icon {
@@ -52,6 +59,7 @@ body {
   display: block;
   font-family: 'Baloo paaji';
   font-size: 25px;
+  font-weight: normal;
   width: 200px;
   margin: 0 auto;
   text-align: center;
@@ -117,22 +125,12 @@ button:hover {
     flex-direction: column;
   }
 
-  .feature-list {
-    margin: 0 auto;
-  }
-
   #right-panel {
-    /* position: absolute; */
     height: 50%;
   }
   #map {
     /* On small screens, we are no longer using row direction but column */
     order: -1;
-    /* position: absolute;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0; */
     height: 50%;
   }
 }
