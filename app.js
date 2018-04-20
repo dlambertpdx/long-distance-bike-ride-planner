@@ -127,17 +127,6 @@ function autocompleteDirectionsHandler() {
   });
 }
 
-// clear markers
-function setMapOnAll(map) {
-  for (let i = 0; i < markers.length; i += 1) {
-    markers[i].setMap(map);
-  }
-}
-
-function clearMarkers() {
-  setMapOnAll(null);
-}
-
 function initMap() { // eslint-disable-line no-unused-vars
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
