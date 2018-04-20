@@ -8,10 +8,11 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="landing-bg">
+  <main role='main'>
   <div class='container'>
     <div id='main-description'>
-    <h1>Long Distance Bike Ride Planner</h1>
-    <div class='features' align='center'></div>
+    <h1 aria-label='Long Distance Bike Ride Planner'>Long Distance Bike Ride Planner</h1>
+    <div aria-label='featuers' class='features' align='center'>
       <ul class='feature-list'>
         <li>This app will allow you to plan a bike route for rides intended to last an hour or more.</li>
         <li>The user can can enter origin and destination points, and get a route, estimated miles, and turn-by-turn directions.</li>
@@ -27,10 +28,9 @@
           </li>
       </ul>
     </div>
-    <div class='enter-btn'><a href='main.html' class='enter-btn'>Let's Go!</a></div>
+    <div class='enter-btn' role='navigation'><a href='main.html' class='enter-btn'>Let's Go!</a></div>
   </div>
-</div>
-    
-    
+  </div>
+  </main>
 </body>
 </html>
