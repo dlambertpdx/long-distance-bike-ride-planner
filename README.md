@@ -19,7 +19,6 @@ A planning tool for cyclists who are planning a ride longer than an hour in leng
 * HTML
 * CSS
 * JavaScript
-* jQuery
 * Google Maps JavaScript API
     * Directions Service
     * Places Service
